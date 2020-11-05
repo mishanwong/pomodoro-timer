@@ -1,0 +1,9 @@
+body {
+  background-color: #ffdae9;
+  font-family: sans-serif;
+}
+
+#time-left {
+  font-size: 50px;
+  font-weight: bold;
+}
