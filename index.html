@@ -11,14 +11,20 @@
 
     <!-- Timer Display -->
     <div>
-      <p id="time-left">100</p>
+      <p id="time-left">25:00</p>
     </div>
 
     <!-- Start, Stop, Reset button -->
     <div>
-      <button type="button" id="start-button">Start</button>
-      <button type="button" id="stop-button">Stop</button>
-      <button type="button" id="reset-button">Reset</button>
+      <button type="button" id="start-button" onclick="startClicked()">
+        Start
+      </button>
+      <button type="button" id="stop-button" onclick="stopClicked()">
+        Stop
+      </button>
+      <button type="button" id="reset-button" onclick="resetClicked()">
+        Reset
+      </button>
     </div>
   </body>
 </html>

@@ -1,45 +1,40 @@
-document.addEventListener("DOMContentLoaded", () => {
-  const timeLeftDisplay = document.querySelector("#time-left");
-  const startButton = document.querySelector("#start-button");
-  const stopButton = document.querySelector("#stop-button");
-  const resetButton = document.querySelector("#reset-button");
+const pomodoroDuration = 25 * 60; //25 minutes in seconds
+let timeLeft = pomodoroDuration;
+let isTimerOn = false;
+let timeLeftDisplay = "25:00";
 
-  let timeLeft = 100;
-  //let time = startingMinutes * 60;
+const timer = setInterval(countdown, 1000);
 
-  //let timer = setInterval(startCountdown, 1000);
+function startClicked() {
+  isTimerOn = true;
+}
 
-  function startClicked() {
-    // const minutes = Math.floor(time / 60);
-    // let seconds = time % 60;
+function stopClicked() {
+  isTimerOn = false;
+}
 
-    setInterval(function () {
-      if (timeLeft <= 0) {
-        clearInterval((timeLeft = 0));
-      }
+function resetClicked() {
+  timeLeft = pomodoroDuration;
+  timeDisplay();
+  isTimerOn = false;
+}
 
-      timeLeftDisplay.innerHTML = timeLeft;
+function countdown() {
+  if (isTimerOn == true && timeLeft > 0) {
+    timeLeft -= 1;
+    timeDisplay();
+  }
+}
 
-      timeLeft -= 1;
-    }, 1000);
+function timeDisplay() {
+  let minute = Math.floor(timeLeft / 60);
+  let second = timeLeft % 60;
 
-    // if (seconds < 10) {
-    // seconds = "0" + seconds;
-    // }
+  if (second < 10) {
+    second = "0" + second;
   }
 
-  /*TO DO: Pause Timer*/
-  function stopClicked() {
-    clearInterval();
-  }
+  timeLeftDisplay = `${minute}:${second}`;
 
-  /*TO DO: Reset the timer to 25 minutes*/
-  function resetClicked() {
-    timeLeft = 100;
-    timeLeftDisplay.innerHTML = timeLeft;
-  }
-
-  startButton.addEventListener("click", startClicked);
-  stopButton.addEventListener("click", stopClicked);
-  resetButton.addEventListener("click", resetClicked);
-});
+  document.getElementById("time-left").innerHTML = timeLeftDisplay;
+}
